@@ -10,10 +10,10 @@ public class Player implements Movable {
     private int playerStrength;
     private List<Item> inventory;
 
-    public Player(String playerName, int playerStartPositionX, int playerStartPositionY) {
+    public Player(String playerName, int playerPositionX, int playerPositionY) {
         this.playerName = playerName;
-        this.x = playerStartPositionX;
-        this.y = playerStartPositionY;
+        this.x = playerPositionX;
+        this.y = playerPositionY;
         this.playerHealth = 100;
         this.playerStrength = 10;
         this.inventory = new ArrayList<>();
@@ -33,5 +33,19 @@ public class Player implements Movable {
     else {
         System.out.println("There is a wall in the way!");
     }
-}
+}   public void pickUpItem(Item item) {
+        if (item.getPosition()[0] == x && item.getPosition()[1] == y) {
+            item.onPickUp(this);
+            System.out.println(playerName + " picked up an item");
+        } else {
+            System.out.println("No item to pick up");
+        }
+    }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
